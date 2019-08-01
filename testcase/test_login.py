@@ -20,7 +20,7 @@ class Test_Login():
         self.driver=self.value
 
     def test_homepage_validate(self):
-        self.logger.info('###############startedt the home page test########')
+        self.logger.info("###############startedt the home page test########")
         self.driver=self.value
         self.driver.get(self.baseurl)
         if self.driver.title=="OrangeHRM1":
