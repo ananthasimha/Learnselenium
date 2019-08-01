@@ -13,21 +13,21 @@ class Test_Login():
     PassWord=ReadConfig.getPassWord()
     Usernameinvalid="admin12345"
     PassWordinvalid="admin123456"
-    loggen=LogGen.loggen()
+    logger=LogGen.loggen()
 
     @pytest.fixture(autouse=True)
     def driversetup(self,OnetimeSetup):
         self.driver=self.value
 
     def test_homepage_validate(self):
-        self.loggen.info('###############startedt the home page test########')
+        self.logger.info('###############startedt the home page test########')
         self.driver=self.value
         self.driver.get(self.baseurl)
-        if self.driver.title=="OrangeHRM":
+        if self.driver.title=="OrangeHRM1":
             assert True==True
         else:
             assert  True==False
-            self.loggen.error('### asertion is failed')
+            self.logger.error('### asertion is failed')
 
         self.driver.close()
 
@@ -46,6 +46,7 @@ class Test_Login():
         time.sleep(2)
         message=self.driver.find_element_by_xpath("//*[@id='spanMessage']").text
         assert message=="Invalid credentials"
+        self.driver.close()
 
 
 
