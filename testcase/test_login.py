@@ -1,6 +1,7 @@
 from utilities.readProperties import ReadConfig
 import pytest
 from selenium import webdriver
+from utilities.Logging import LogGen
 
 import time
 from pom.loginpage import LoginPageObjectes
@@ -12,15 +13,22 @@ class Test_Login():
     PassWord=ReadConfig.getPassWord()
     Usernameinvalid="admin12345"
     PassWordinvalid="admin123456"
+    loggen=LogGen.loggen()
 
     @pytest.fixture(autouse=True)
     def driversetup(self,OnetimeSetup):
         self.driver=self.value
 
     def test_homepage_validate(self):
+        self.loggen.info('###############startedt the home page test########')
         self.driver=self.value
         self.driver.get(self.baseurl)
-        assert self.driver.title=="OrangeHRM"
+        if self.driver.title=="OrangeHRM":
+            assert True==True
+        else:
+            assert  True==False
+            self.loggen.error('### asertion is failed')
+
         self.driver.close()
 
     def test_Loginwithvaliddata(self,):
